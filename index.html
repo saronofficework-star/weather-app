@@ -4,22 +4,44 @@
   <title>WEATHER API</title>
   <style>
     body {
-      text-align: center;
       font-family: Arial;
+      text-align: center;
       margin-top: 50px;
+      background: linear-gradient(to right, #74ebd5, #ACB6E5);
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
     }
 
     input {
       padding: 10px;
+      width: 70%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
     button {
       padding: 10px;
+      border: none;
+      background: #007BFF;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
     }
 
-    #result {
-      margin-top: 20px;
-      font-size: 18px;
+    img {
+      width: 80px;
+    }
+
+    .temp {
+      font-size: 28px;
+      font-weight: bold;
     }
   </style>
 </head>
@@ -54,10 +76,13 @@
         return;
       }
 
+      let icon = data.weather[0].icon;
+
       result.innerHTML = `
-        <h3>${data.name}</h3>
-        Temperature: ${data.main.temp} °C <br>
-        Weather: ${data.weather[0].main}
+        <h2>${data.name}</h2>
+        <img src="https://openweathermap.org/img/wn/${icon}@2x.png">
+        <div class="temp">${data.main.temp}°C</div>
+        <p>${data.weather[0].main}</p>
       `;
 
     } catch (error) {
